@@ -1,0 +1,38 @@
+from asyncore import read
+
+
+def read_line(n, file):
+    if not isinstance(n, int):
+        return ("invalid input detected")
+    try:
+        file = open(file)
+        lines = file.readlines()
+        return(lines[n-1])
+    except:
+        cline = file.readlines()
+        if (n > len(cline)+1):
+            return ("line " + str(n) + " doesn't exsit")
+        else:
+            return ("file not found")
+
+
+print(read_line(4, "ex3_text.txt"))
+
+
+def longest_words(file):
+    try:
+        lst = []
+        myfile = open(file)
+        myfile = myfile.read()
+        myfile = myfile.replace('.', ' ')
+        myfile = myfile.replace('-', ' ')
+        myfile = myfile.replace(',', ' ')
+        lines = myfile.split()
+        lines = sorted(lines, key=len, reverse=True)
+        mylist = lines[0:5]
+        return mylist
+    except:
+        return "file not found", lst
+
+
+ print(longest_words("ex3_text.txt"))
